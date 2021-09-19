@@ -1,0 +1,15 @@
+FROM python:3.6-slim
+
+WORKDIR /code
+
+COPY ./requirements.txt /code/
+
+# RUN apk add g++
+
+RUN pip install --upgrade pip setuptools wheel
+
+RUN pip install -r requirements.txt
+
+COPY . /code/
+
+CMD ["unicorn main:app --reload"]
